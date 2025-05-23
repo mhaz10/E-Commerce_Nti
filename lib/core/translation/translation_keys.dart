@@ -14,4 +14,10 @@ abstract class TranslationKeys {
   static const String welcomeBack = 'Welcome \n Back!';
   static const String email = 'Email';
   static const String password = 'Password';
+  static const String createAnAccount = 'Create an \n account';
+  static const String fullName = 'Full Name';
+  static const String phone = 'Phone';
+  static const String confirmPassword = 'Confirm Password';
+  static const String byClickingThe = 'By clicking the';
+  static const String buttonYouAgreeToThePublicOffer = 'button, you agree \n to the public offer';
 }

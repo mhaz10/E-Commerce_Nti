@@ -4,6 +4,13 @@ import 'package:flutter/material.dart';
 class AppTextStyles {
   static const String fontFamily = 'Montserrat';
 
+  static TextStyle textStyle12 = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: AppColors.greyColor,
+    fontFamily: fontFamily,
+  );
+
   static TextStyle textStyle14 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w600,

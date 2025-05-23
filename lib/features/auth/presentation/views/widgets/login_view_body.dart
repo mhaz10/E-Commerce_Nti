@@ -35,7 +35,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   hintText: TranslationKeys.email,
                   keyboardType: TextInputType.emailAddress,
                   validator: EmailValidator(),
-                  prefixIcon: AppIcons.email
+                  prefixIcon: AppIcons.emailIcon
               ),
               const SizedBox(height: 20),
               CustomTextFormFiled(
@@ -44,7 +44,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   hintText: TranslationKeys.password,
                   keyboardType: TextInputType.visiblePassword,
                   validator: PasswordValidator(),
-                  prefixIcon: AppIcons.password
+                  prefixIcon: AppIcons.passwordIcon
               ),
               const SizedBox(height: 40),
               SizedBox(
