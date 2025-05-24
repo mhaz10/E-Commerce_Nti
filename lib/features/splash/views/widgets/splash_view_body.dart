@@ -39,11 +39,15 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     await Future.delayed((Duration(milliseconds: 500)), () {
       CacheData.firstTime = CacheHelper.getData(key: CacheKeys.firstTime);
       if (CacheData.firstTime != null) {
-        GoRouter.of(context).pushReplacement(AppRouter.kGetStarted);
+        CacheData.accessToken = CacheHelper.getData(key: CacheKeys.accessToken);
+        if (CacheData.accessToken != null) {
+          GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+        } else {
+          GoRouter.of(context).pushReplacement(AppRouter.kGetStarted);
+        }
       } else {
         GoRouter.of(context).pushReplacement(AppRouter.kOnBoarding);
       }
     });
   }
-
 }

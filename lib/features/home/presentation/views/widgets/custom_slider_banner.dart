@@ -1,5 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerce_nti/features/home/presentation/manger/home/home_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 import '../../../../../core/helper/app_responsive.dart';
 
@@ -8,59 +11,66 @@ class CustomSliderBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CarouselSlider.builder(
-        itemCount: 3,
-        itemBuilder: (context, index, realIndex) {
-          return Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              image: const DecorationImage(
-                image: NetworkImage('https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2024-06/240610-beauty-awards-2024-skincare-winners-vl-social-91be20.jpg'),
-                fit: BoxFit.cover,
-              ),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "50-40% OFF",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+    return BlocBuilder<HomeCubit, HomeState>(
+      builder: (context, state) {
+        if (HomeCubit.get(context).sliders.isNotEmpty) {
+          return CarouselSlider.builder(
+              itemCount: HomeCubit.get(context).sliders.length,
+              itemBuilder: (context, index, realIndex) {
+                return Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(HomeCubit.get(context).sliders[index]['image_path']),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.circular(16),
                   ),
-                ),
-                const Text(
-                  "Now in (product)\nAll colours",
-                  style: TextStyle(color: Colors.white),
-                ),
-                const SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.pinkAccent,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "50-40% OFF",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const Text(
+                        "Now in (product)\nAll colours",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      const SizedBox(height: 10),
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.pinkAccent,
+                        ),
+                        child: const Text("Shop Now"),
+                      ),
+                    ],
                   ),
-                  child: const Text("Shop Now"),
-                ),
-              ],
-            ),
-          );
-        },
-        options: CarouselOptions(
-          height: AppResponsive.height(context, value: 220),
-          initialPage: 0,
-          enableInfiniteScroll: true,
-          reverse: false,
-          autoPlay: true,
-          autoPlayInterval: Duration(seconds: 3),
-          autoPlayAnimationDuration: Duration(milliseconds: 800),
-          autoPlayCurve: Curves.fastOutSlowIn,
-          enlargeCenterPage: true,
-          enlargeFactor: 0.3,
-          scrollDirection: Axis.horizontal,
-        ));
+                );
+              },
+              options: CarouselOptions(
+                height: AppResponsive.height(context, value: 220),
+                initialPage: 0,
+                enableInfiniteScroll: true,
+                reverse: false,
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 3),
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enlargeCenterPage: true,
+                enlargeFactor: 0.3,
+                scrollDirection: Axis.horizontal,
+              ));
+        }
 
+        return SizedBox();
+      },
+    );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:ecommerce_nti/core/utils/app_colors.dart';
 import 'package:ecommerce_nti/core/utils/app_icons.dart';
+import 'package:ecommerce_nti/features/home/presentation/manger/home/home_cubit.dart';
 import 'package:ecommerce_nti/features/home/presentation/views/widgets/item_page.dart';
 import 'package:ecommerce_nti/features/home/presentation/views/widgets/profile_page.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +23,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.redColor,
         shape: CircleBorder(),
-        onPressed: () {
-
-        },
+        onPressed: () {},
         child: SvgPicture.asset(AppIcons.bagIcon),
       ),
       bottomNavigationBar: BottomNavigationBar(

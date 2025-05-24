@@ -26,8 +26,6 @@ class HomePage extends StatelessWidget {
           SizedBox(height: 16),
           CustomSliderBanner(),
           SizedBox(height: 8),
-          //BannerIndicator(),
-          SizedBox(height: 16),
           SectionTitle(title: 'Recommended'),
           SizedBox(height: 8),
           RecommendedProducts(),
