@@ -1,7 +1,11 @@
 import 'package:ecommerce_nti/core/helper/app_router.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'core/cache/cache_helper.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper.init();
   runApp(const MyApp());
 }
 

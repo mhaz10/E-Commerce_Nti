@@ -19,15 +19,11 @@ class PasswordValidator extends AppValidator {
   @override
   String? validate(String? value) {
     if (value == null || value.isEmpty) return 'Password is required';
-    if(confirm !=null)
-    {
-      print("$confirm $value");
-      // check equality
-      if(confirm != value)
-      {
-        return 'Password Does not Match';
-      }
+
+    if ( value.isNotEmpty && confirm != null && value != value) {
+      return 'Passwords do not match';
     }
+
     if (value.length < 6) {
       return 'Password must be at least 6 characters';
     }

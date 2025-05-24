@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/cache/ cache_data.dart';
+import '../../../../core/cache/cache_helper.dart';
+import '../../../../core/cache/cache_keys.dart';
+
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
 
@@ -16,7 +20,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
   @override
   void initState() {
-    navigateToNextScreen();
+    navigateToNextScreen(context);
     super.initState();
   }
 
@@ -31,7 +35,15 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     );
   }
 
-  void navigateToNextScreen() async  {
-    await  Future.delayed(const Duration(milliseconds: 500), () => GoRouter.of(context).pushReplacement(AppRouter.kOnBoarding));
+  void navigateToNextScreen(context) async {
+    await Future.delayed((Duration(milliseconds: 500)), () {
+      CacheData.firstTime = CacheHelper.getData(key: CacheKeys.firstTime);
+      if (CacheData.firstTime != null) {
+        GoRouter.of(context).pushReplacement(AppRouter.kGetStarted);
+      } else {
+        GoRouter.of(context).pushReplacement(AppRouter.kOnBoarding);
+      }
+    });
   }
+
 }

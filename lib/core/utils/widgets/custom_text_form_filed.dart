@@ -24,6 +24,7 @@ class _CustomTextFormFiledState extends State<CustomTextFormFiled> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       controller: widget.controller,
       cursorColor: AppColors.greyColor,
       keyboardType: widget.keyboardType,

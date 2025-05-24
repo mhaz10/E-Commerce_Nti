@@ -1,3 +1,4 @@
+import 'package:ecommerce_nti/core/cache/cache_helper.dart';
 import 'package:ecommerce_nti/core/helper/app_router.dart';
 import 'package:ecommerce_nti/core/translation/translation_keys.dart';
 import 'package:ecommerce_nti/core/utils/app_colors.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/cache/cache_keys.dart';
 import '../../../../core/helper/app_responsive.dart';
 
 class OnboardingViewBody extends StatefulWidget {
@@ -51,7 +53,8 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             TextButton(
-              onPressed: () {
+              onPressed: () async {
+                await CacheHelper.saveData(key: CacheKeys.firstTime, value: false);
                 GoRouter.of(context).pushReplacement(AppRouter.kGetStarted);
               },
               child: Text(
@@ -113,8 +116,9 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (pageIndex == 2) {
+                      await CacheHelper.saveData(key: CacheKeys.firstTime, value: false);
                       GoRouter.of(context).pushReplacement(AppRouter.kGetStarted);
                     } else {
                       _pageController.animateToPage(
