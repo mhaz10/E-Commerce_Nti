@@ -1,11 +1,13 @@
 import 'package:ecommerce_nti/features/auth/presentation/views/login_view.dart';
 import 'package:ecommerce_nti/features/auth/presentation/views/register_view.dart';
+import 'package:ecommerce_nti/features/home/data/models/best_seller_products_model.dart';
 import 'package:ecommerce_nti/features/home/presentation/views/home_view.dart';
 import 'package:ecommerce_nti/features/onBoarding/views/get_started.dart';
 import 'package:ecommerce_nti/features/onBoarding/views/onboarding_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/home/presentation/views/product_details_view.dart';
 import '../../features/splash/views/splash_view.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -16,6 +18,7 @@ abstract class AppRouter {
   static const kLoginView = '/LoginView';
   static const kRegisterView = '/RegisterView';
   static const kHomeView = '/HomeView';
+  static const kProductDetailsView = '/ProductDetailsView';
 
   static final router = GoRouter(
     navigatorKey: navigatorKey,
@@ -48,6 +51,14 @@ abstract class AppRouter {
       GoRoute(
         path: kHomeView,
         builder: (context, state) => const HomeView(),
+      ),
+
+      GoRoute(
+        path: kProductDetailsView,
+        builder: (context, state) {
+          final product = state.extra as BestSellerProduct;
+          return ProductDetailsView(product: product);
+        },
       ),
     ],
   );
